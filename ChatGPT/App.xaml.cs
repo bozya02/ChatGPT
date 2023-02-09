@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatGPT.DB;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,6 @@ namespace ChatGPT
     /// </summary>
     public partial class App : Application
     {
+        public static Employee Employee { get; set; }
     }
 }
