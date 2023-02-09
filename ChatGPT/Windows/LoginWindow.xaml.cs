@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatGPT.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,8 +28,14 @@ namespace ChatGPT.Windows
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            new ChitchatWindow().Show();
-            this.Close();
+            var username = tbUsername.Text;
+            var password = pbPassword.Password;
+
+            if ((App.Employee = DataAccess.Login(username, password)) != null)
+            {
+                new ChitchatWindow().Show();
+                this.Close();
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
