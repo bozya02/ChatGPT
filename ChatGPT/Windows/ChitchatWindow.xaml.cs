@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatGPT.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,36 @@ namespace ChatGPT.Windows
     /// </summary>
     public partial class ChitchatWindow : Window
     {
+        public string EmployeeName { get; set; }
+        public List<Chatroom> Chatrooms { get; set; }
+
         public ChitchatWindow()
         {
             InitializeComponent();
+
+            EmployeeName = App.Employee.Name;
+            Chatrooms = App.Employee.EmployeeChatrooms.ToList().Select(x => x.Chatroom).ToList();
+
+            this.DataContext = this;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnFinder_Click(object sender, RoutedEventArgs e)
+        {
+            new EmployeeFinderWindow().ShowDialog();
+        }
+
+        private void lvChatrooms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var chatroom = lvChatrooms.SelectedItem as Chatroom;
+            if (chatroom != null)
+                new ChatWindow(chatroom).Show();
+
+            lvChatrooms.SelectedIndex = -1;
         }
     }
 }

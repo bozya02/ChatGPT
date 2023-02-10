@@ -36,5 +36,13 @@ namespace ChatGPT.DB
 
             return sb.ToString();
         }
+
+        public static void SaveChatroom(Chatroom chatroom)
+        {
+            if (chatroom.Id == 0)
+                ChatGPTEntities.GetContext().Chatrooms.Add(chatroom);
+
+            ChatGPTEntities.GetContext().SaveChanges();
+        }
     }
 }

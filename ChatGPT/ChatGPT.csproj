@@ -64,7 +64,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Windows\ChatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\ChitchatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EmployeeFinderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,10 +106,12 @@
     <Compile Include="DB\Chatroom.cs">
       <DependentUpon>ChatGPTModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\ChatroomPartial.cs" />
     <Compile Include="DB\DataAccess.cs" />
     <Compile Include="DB\Department.cs">
       <DependentUpon>ChatGPTModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\DepartmentPartial.cs" />
     <Compile Include="DB\Employee.cs">
       <DependentUpon>ChatGPTModel.tt</DependentUpon>
     </Compile>
@@ -111,8 +121,14 @@
     <Compile Include="DB\sysdiagram.cs">
       <DependentUpon>ChatGPTModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ChatWindow.xaml.cs">
+      <DependentUpon>ChatWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ChitchatWindow.xaml.cs">
       <DependentUpon>ChitchatWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EmployeeFinderWindow.xaml.cs">
+      <DependentUpon>EmployeeFinderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
