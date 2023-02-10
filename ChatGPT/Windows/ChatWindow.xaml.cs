@@ -43,6 +43,9 @@ namespace ChatGPT.Windows
 
             lvEmployees.ItemsSource = Chatroom.EmployeeChatrooms;
             lvEmployees.Items.Refresh();
+
+            lvMessages.ItemsSource = Chatroom.ChatMessages;
+            lvMessages.Items.Refresh();
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
@@ -59,6 +62,11 @@ namespace ChatGPT.Windows
         {
             DataAccess.LeaveChatroom(Chatroom, App.Employee);
             this.Close();
+        }
+
+        private void btnSend_Click(object sender, RoutedEventArgs e)
+        {
+            DataAccess.SendMessage(Chatroom, App.Employee, tbMessage.Text);
         }
     }
 }

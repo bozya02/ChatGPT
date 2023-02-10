@@ -38,5 +38,27 @@
                 <Button x:Name="btnLeaveChatroom" Content="Leave Chatroom" Margin="1" Click="btnLeaveChatroom_Click"/>
             </StackPanel>
         </Grid>
+
+        <ListView x:Name="lvMessages" ItemsSource="{Binding ChatMessages}" Grid.Column="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <Run Text="{Binding Date, StringFormat={}[HH.mm]}"/>
+                        <Run Text="{Binding Employee.Name, StringFormat={}{0}:}"/>
+                        <Run Text="{Binding Message}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="tbMessage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0"/>
+            <Button x:Name="btnSend" Content="Send" Background="{DynamicResource Active}"
+                    Grid.Column="1" VerticalAlignment="Stretch" Margin="1" Padding="30 0" Click="btnSend_Click"/>
+        </Grid>
     </Grid>
 </Window>

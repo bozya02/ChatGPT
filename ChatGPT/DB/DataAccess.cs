@@ -49,6 +49,20 @@ namespace ChatGPT.DB
         public static void LeaveChatroom(Chatroom chatroom, Employee employee)
         {
             chatroom.EmployeeChatrooms.Remove(chatroom.EmployeeChatrooms.FirstOrDefault(x => x.Employee == employee));
+            employee.EmployeeChatrooms.Remove(employee.EmployeeChatrooms.FirstOrDefault(x => x.Chatroom == chatroom));
+            SaveChatroom(chatroom);
+        }
+
+        internal static void SendMessage(Chatroom chatroom, Employee employee, string message)
+        {
+            chatroom.ChatMessages.Add(new ChatMessage
+            {
+                Chatroom = chatroom,
+                Employee = employee,
+                Message = message,
+                Date = DateTime.Now,
+            });
+
             SaveChatroom(chatroom);
         }
     }
