@@ -10,7 +10,7 @@ namespace ChatGPT.DB
     public class DataAccess
     {
         public delegate void AddNewItem();
-        public static AddNewItem AddNewItemEvent;
+        public static event AddNewItem AddNewItemEvent;
 
         public static List<Employee> GetEmployees() => ChatGPTEntities.GetContext().Employees.ToList();
         public static List<Chatroom> GetChatrooms() => ChatGPTEntities.GetContext().Chatrooms.ToList();
@@ -43,6 +43,13 @@ namespace ChatGPT.DB
                 ChatGPTEntities.GetContext().Chatrooms.Add(chatroom);
 
             ChatGPTEntities.GetContext().SaveChanges();
+            AddNewItemEvent?.Invoke();
+        }
+
+        public static void LeaveChatroom(Chatroom chatroom, Employee employee)
+        {
+            chatroom.EmployeeChatrooms.Remove(chatroom.EmployeeChatrooms.FirstOrDefault(x => x.Employee == employee));
+            SaveChatroom(chatroom);
         }
     }
 }

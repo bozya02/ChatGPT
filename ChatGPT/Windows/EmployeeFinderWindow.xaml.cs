@@ -60,22 +60,24 @@ namespace ChatGPT.Windows
             ApplyFilters();
         }
 
-        private void lvEmployees_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lvEmployees_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var employee = lvEmployees.SelectedItem as Employee;
 
-            if (employee == App.Employee)
+            if (employee == App.Employee || Chatroom.EmployeeChatrooms.Any(x => x.Employee == employee))
                 return;
 
             if (Chatroom.Id == 0)
             {
                 Chatroom.EmployeeChatrooms.Add(new EmployeeChatroom
                 {
-                    Employee = App.Employee
+                    Employee = App.Employee,
+                    Chatroom = Chatroom
                 });
                 Chatroom.EmployeeChatrooms.Add(new EmployeeChatroom
                 {
-                    Employee = employee
+                    Employee = employee,
+                    Chatroom = Chatroom
                 });
 
                 new ChatWindow(Chatroom).Show();

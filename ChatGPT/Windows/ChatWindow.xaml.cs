@@ -28,7 +28,37 @@ namespace ChatGPT.Windows
 
             Chatroom = chatroom;
 
-            this.DataContext = this;
+            Title += chatroom.Topic;
+
+            DataAccess.AddNewItemEvent += DataAccess_AddNewItemEvent;
+
+            this.DataContext = Chatroom;
+        }
+
+        private void DataAccess_AddNewItemEvent()
+        {
+            this.DataContext = Chatroom;
+
+            Title = $"Topic: {Chatroom.Topic}";
+
+            lvEmployees.ItemsSource = Chatroom.EmployeeChatrooms;
+            lvEmployees.Items.Refresh();
+        }
+
+        private void btnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            new EmployeeFinderWindow(Chatroom).ShowDialog();
+        }
+
+        private void btnChangeTopic_Click(object sender, RoutedEventArgs e)
+        {
+            new ChangeTopicWindow(Chatroom).ShowDialog();
+        }
+
+        private void btnLeaveChatroom_Click(object sender, RoutedEventArgs e)
+        {
+            DataAccess.LeaveChatroom(Chatroom, App.Employee);
+            this.Close();
         }
     }
 }

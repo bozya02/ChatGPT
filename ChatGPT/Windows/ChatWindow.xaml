@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatGPT.Windows"
         mc:Ignorable="d"
-        Title="Topic: " Height="450" Width="800">
+        Title="Topic: " Height="500" Width="600"
+        MinHeight="500" MinWidth="600">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <ListView x:Name="lvEmployees" ItemsSource="{Binding EmployeeChatrooms}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Employee.Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackPanel Grid.Row="1">
+                <Button x:Name="btnAddUser" Content="Add User" Margin="1" Click="btnAddUser_Click"/>
+                <Button x:Name="btnChangeTopic" Content="Change Topic" Margin="1" Click="btnChangeTopic_Click"/>
+                <Button x:Name="btnLeaveChatroom" Content="Leave Chatroom" Margin="1" Click="btnLeaveChatroom_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

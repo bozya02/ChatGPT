@@ -25,7 +25,7 @@
         <Label Content="Password" Grid.Row="1" Grid.Column="0"/>
         <PasswordBox x:Name="pbPassword" Grid.Row="1" Grid.Column="1"/>
 
-        <CheckBox Content="Remeember me" Grid.Row="2" Grid.Column="1"/>
+        <CheckBox x:Name="cbRemeember" Content="Remeember me" Grid.Row="2" Grid.Column="1"/>
 
         <Button x:Name="btnOk" Content="Ok"
                 Grid.Row="3" 

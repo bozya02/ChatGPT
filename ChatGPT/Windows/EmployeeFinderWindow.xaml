@@ -35,10 +35,10 @@
         <TextBox x:Name="tbSearch" Grid.Column="1" TextChanged="tbSearch_TextChanged"/>
 
         <ListView x:Name="lvEmployees" Grid.RowSpan="2" ItemsSource="{Binding Employees}" Margin="10"
-                  Grid.Column="1" Grid.Row="1" SelectionChanged="lvEmployees_SelectionChanged">
+                  Grid.Column="1" Grid.Row="1" MouseDoubleClick="lvEmployees_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Name}"/>
+                    <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

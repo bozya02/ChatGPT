@@ -30,7 +30,17 @@ namespace ChatGPT.Windows
             EmployeeName = App.Employee.Name;
             Chatrooms = App.Employee.EmployeeChatrooms.ToList().Select(x => x.Chatroom).ToList();
 
+            DataAccess.AddNewItemEvent += DataAccess_AddNewItemEvent;
+
             this.DataContext = this;
+        }
+
+        private void DataAccess_AddNewItemEvent()
+        {
+            Chatrooms = App.Employee.EmployeeChatrooms.ToList().Select(x => x.Chatroom).ToList();
+
+            lvChatrooms.ItemsSource = Chatrooms;
+            lvChatrooms.Items.Refresh();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -40,7 +50,7 @@ namespace ChatGPT.Windows
 
         private void btnFinder_Click(object sender, RoutedEventArgs e)
         {
-            new EmployeeFinderWindow().ShowDialog();
+            new EmployeeFinderWindow(new Chatroom()).ShowDialog();
         }
 
         private void lvChatrooms_SelectionChanged(object sender, SelectionChangedEventArgs e)

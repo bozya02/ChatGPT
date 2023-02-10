@@ -29,6 +29,8 @@
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Background" Value="White"/>
             <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Black"/>
         </Style>
 
         <Style TargetType="CheckBox">

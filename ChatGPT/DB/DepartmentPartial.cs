@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatGPT.DB
 {
-    internal partial class Department
+    public partial class Department
     {
         public bool IsChecked { get; set; } = false;
     }

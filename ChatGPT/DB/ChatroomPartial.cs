@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ChatGPT.DB
 {
-    internal partial class Chatroom
+    public partial class Chatroom
     {
-        public DateTime LastMessage => (DateTime)ChatMessages.LastOrDefault().Date;
+        public DateTime? LastMessage => ChatMessages.Count == 0 ? null : ChatMessages.LastOrDefault().Date;
     }
 }
